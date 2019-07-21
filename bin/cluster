@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var cluster = require('cluster');
 var fs = require('fs');
 
@@ -7,8 +8,8 @@ if (cluster.isMaster) {
       console.log('Error: unable to create cluster.pid');
       process.exit(1);
     } else {
-      console.log('Starting cluster with pid: ' + process.pid);    
-      //ensure workers exit cleanly 
+      console.log('Starting cluster with pid: ' + process.pid);
+      //ensure workers exit cleanly
       process.on('SIGINT', function() {
         console.log('Cluster shutting down..');
         for (var id in cluster.workers) {
